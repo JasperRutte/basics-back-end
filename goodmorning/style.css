@@ -1,6 +1,12 @@
+body {
+    font-size: 40px;
+    font-family: Lobster;
+}
+
 .time {
     margin: auto;
     width: 50%;
     padding: 20%;
     text-align: center;
+    color: aliceblue;
 }
