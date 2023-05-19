@@ -8,7 +8,7 @@
     date_default_timezone_set("Europe/Amsterdam");
     $time = date("H:i");
     $hour = intval(date("H"));
-//    $hour = intval(2);
+//    $hour = intval(0);
     $time_of_day = "";
     $file = "images/";
     if ($hour < 6){
@@ -26,10 +26,11 @@
     }
     ?>
 </head>
-<body style="background-image: url(<?php echo $background;?>);"
+
+<body style="background-image: url(<?php echo $background;?>);">
 
 <div class="time">
-    <h1>Goede <?php echo $time_of_day;?></h1>
+    <h1>Goeden<?php echo $time_of_day;?>!</h1>
     <h2>Het is nu <?php echo $time; ?></h2>
 </div>
 
