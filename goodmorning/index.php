@@ -8,8 +8,7 @@
     date_default_timezone_set("Europe/Amsterdam");
     $time = date("H:i");
     $hour = intval(date("H"));
-//    $hour = intval(0);
-    $time_of_day = "";
+//    $hour = intval();
     $file = "images/";
     if ($hour < 6){
         $time_of_day = "nacht";
