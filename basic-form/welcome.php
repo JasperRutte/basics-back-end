@@ -1,18 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Welcome</title>
-    <style>
-        .error {color: #FF0000;}
-    </style>
-</head>
-<body>
 
 <?php
 $nameErr = $emailErr = $genderErr = $websiteErr = "";
 $name = $email = $gender = $comment = $website = "";
-function test_input($data) {
+function test_input($data): string
+{
     $data = trim($data);
     $data = stripslashes($data);
     return htmlspecialchars($data);
@@ -23,7 +14,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $nameErr = "Name is required";
     } else {
         $name = test_input($_POST["name"]);
-        // check if name only contains letters and whitespace
         if (!preg_match("/^[a-zA-Z-' ]*$/", $name)) {
             $nameErr = "Only letters and white space allowed";
         }
@@ -40,11 +30,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <style>
+        .error {color: #FF0000;}
+    </style>
+</head>
+<body>
+
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-    Name: <input type="text" name="name">
+    Name: <label>
+        <input type="text" name="name" value="<?php echo $name?>">
+    </label>
     <span class="error">* <?php echo $nameErr;?></span>
     <br><br>
-    E-mail: <input type="text" name="email">
+    E-mail: <label>
+        <input type="text" name="email" value="<?php echo $email?>">
+    </label>
     <span class="error">* <?php echo $emailErr;?></span>
     <br><br>
     <input type="submit" name="submit" value="Submit">
