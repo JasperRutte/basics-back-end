@@ -1,82 +1,78 @@
-
 <?php
-$nameErr = $talentErr = $favPersonErr = $favNumErr = $vacationErr = $bestAttributeErr = $worseAttributeErr = $worseHappenErr = "";
-$name = $talent = $favPerson = $favNum = $vacation = $bestAttribute = $worseAttribute = $worseHappen = "";
-function test_input($data): string
-{
-    $data = trim($data);
-    $data = stripslashes($data);
-    return htmlspecialchars($data);
-}
-function requirements($formInfo){
-    if (empty($_POST[$formInfo])) {
-        $formInfo = "Is required!";
+
+    $startProgram = true;
+    $finishProgram = false;
+
+    $one = $two = $three = $four = $five = $six = $seven = '';
+
+    function validateData($data): string {
+        $data = trim($data);
+        $data = stripslashes($data);
+        return htmlspecialchars($data);
     }
-}
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if (!empty($_POST['1']) OR !empty($_POST['2']) OR !empty($_POST['3']) OR !empty($_POST['4']) or !empty($_POST['5']) OR !empty($_POST['6'] OR !empty($_POST['7']))) {
+            $one = validateData($_POST['1']);
+            $two = validateData($_POST['2']);
+            $three = validateData($_POST['3']);
+            $four = validateData($_POST['4']);
+            $five = validateData($_POST['5']);
+            $six = validateData($_POST['6']);
+            $seven = validateData($_POST['7']);
+
+            $startProgram = false;
+            $finishProgram = true;
+        }
+    }
+
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome</title>
-    <style>
-        .error {color: #FF0000;}
-    </style>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BE2O7 - eindopdracht - Mad libs</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
-<body>
-
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-    Name: <label><input type="text" name="name" value="<?php echo $name?>"></label>
-    <span class="error">* <?php echo $nameErr;?></span>
-    <br><br>
-
-    Talent: <label><input type="text" name="talent" value="<?php echo $talent?>"></label>
-    <span class="error">* <?php echo $talentErr;?></span>
-    <br><br>
-
-    favPerson: <label><input type="text" name="favPerson" value="<?php echo $favPerson?>"></label>
-    <span class="error">* <?php echo $favPersonErr;?></span>
-    <br><br>
-
-    favNum: <label><input type="text" name="favNum" value="<?php echo $favNum?>"></label>
-    <span class="error">* <?php echo $favNumErr;?></span>
-    <br><br>
-
-    vacation: <label><input type="text" name="vacation" value="<?php echo $vacation?>"></label>
-    <span class="error">* <?php echo $vacationErr;?></span>
-    <br><br>
-
-    bestAttribute: <label><input type="text" name="bestAttribute" value="<?php echo $bestAttribute?>"></label>
-    <span class="error">* <?php echo $bestAttributeErr;?></span>
-    <br><br>
-
-    worseAttribute: <label><input type="text" name="worseAttribute" value="<?php echo $worseAttribute?>"></label>
-    <span class="error">* <?php echo $worseAttributeErr;?></span>
-    <br><br>
-
-    worseHappen: <label><input type="text" name="worseHappen" value="<?php echo $worseHappen?>"></label>
-    <span class="error">* <?php echo $worseHappenErr;?></span>
-    <br><br>
-
-    <input type="submit" name="submit" value="Submit">
-
-
-
-
-</form>
-
+<body class="main">
+<div class="container">
+    <h1>Mad Libs</h1>
+    <div class="inner">
+        <header>
+            <span>Er heerst paniek... Onkunde</span>
+        </header>
+        <main>
+            <h2>Onkunde</h2>
+            <?php if ($startProgram) { ?>
+            <form method="post">
+                <label for="1">Wat zou je graag willen kunnen?</label>
+                <input type="text" name="1" size="50"><br><br>
+                <label for="2">Met welke persoon kan je goed opschieten?</label>
+                <input type="text" name="2" size="50"><br><br>
+                <label for="3">Wat is je favoriete getal?</label>
+                <input type="text" name="3" size="50"><br><br>
+                <label for="4">Wat heb je altijd bij als je op vakantie gaat?</label>
+                <input type="text" name="4" size="50"><br><br>
+                <label for="5">Wat is je beste persoonlijke eigenschap?</label>
+                <input type="text" name="5" size="50"><br><br>
+                <label for="6">Wat is je slechste persoonlijke eigenschap?</label>
+                <input type="text" name="6" size="50"><br><br>
+                <label for="7">Wat is het ergste wat je kan overkomen?</label>
+                <input type="text" name="7" size="50"><br>
+                <button type="submit">Versturen</button>
+            </form>
+            <?php } else if ($finishProgram) { ?>
+                <p>Niet veel mensen kunnen <?php echo $one?> Neem bijvoorbeeld <?php echo $two?>. Zelfs met <?php echo $three?> <?php echo $four?> lukt het niet. Hij heeft zeker geen gebrekn aan <?php echo $five?> maar is soms wel een beetje <?php echo $six?>. Teveel <?php echo $six?> lijdt tot <?php echo $seven?></p>
+            <?php } ?>
+        </main>
+        <footer>
+            <span>Deze website is gemaakt door Ivo & Jasper</span>
+        </footer>
+    </div>
+</div>
 </body>
 </html>
-
-<!--if ($_SERVER["REQUEST_METHOD"] == "POST") {-->
-<!--if (empty($_POST["name"])) {-->
-<!--$nameErr = "Name is required";-->
-<!--} else {-->
-<!--$name = test_input($_POST["name"]);-->
-<!--if (!preg_match("/^[a-zA-Z-' ]*$/", $name)) {-->
-<!--$nameErr = "Only letters and white space allowed";-->
-<!--}-->
-<!--}-->
-<!--}-->

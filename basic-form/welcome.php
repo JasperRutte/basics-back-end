@@ -2,6 +2,7 @@
 <?php
 $nameErr = $emailErr = $genderErr = $websiteErr = "";
 $name = $email = $gender = $comment = $website = "";
+
 function test_input($data): string
 {
     $data = trim($data);
